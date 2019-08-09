@@ -1,5 +1,7 @@
 package com.example.bookservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,10 +23,16 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
-    public Book(String title, String author, String genre) {
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Book(String title, String author, String genre, User user) {
         this.title = title;
         this.author = author;
         this.genre = genre;
+        this.user = user;
+
     }
 
     public Book() {
@@ -60,5 +68,13 @@ public class Book {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -47,22 +47,22 @@ public class DataLoader implements ApplicationRunner {
         User user2 = new User("Susan");
         userRepository.save(user2);
 
-        Book book1 = new Book("The Choice Factory", "Richard Shotton", "Business");
+        Book book1 = new Book("The Choice Factory", "Richard Shotton", "Business", user1);
         bookRepository.save(book1);
 
-        Book book2 = new Book("Investing", "Glen Arnold", "Finance");
+        Book book2 = new Book("Investing", "Glen Arnold", "Finance", user1);
         bookRepository.save(book2);
 
-        Book book3 = new Book("Social Ventures", "Yunus Mohammed", "Buisness");
+        Book book3 = new Book("Social Ventures", "Yunus Mohammed", "Buisness", user1);
         bookRepository.save(book3);
 
-        Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness");
+        Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness", user2);
         bookRepository.save(book4);
 
-        Trade trade1 = new Trade();
+        Trade trade1 = new Trade(user1);
         tradeRepository.save(trade1);
 
-        Trade trade2 = new Trade();
+        Trade trade2 = new Trade(user2);
         tradeRepository.save(trade2);
 
 

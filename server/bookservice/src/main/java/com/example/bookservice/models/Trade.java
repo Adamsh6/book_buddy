@@ -10,17 +10,30 @@ public class Trade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Column(name = "trade")
     private Boolean completed;
 
-    public Trade(long id) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Trade(User user) {
         this.completed = false;
+        this.user = user;
     }
 
     public Trade() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
