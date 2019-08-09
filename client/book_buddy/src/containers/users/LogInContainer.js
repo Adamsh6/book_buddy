@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import UserSelect from '../../components/users/UserSelect'
+import UserAdd from '../../components/users/UserAdd'
 
 class LogInContainer extends Component {
   constructor(props){
@@ -7,7 +8,10 @@ class LogInContainer extends Component {
   }
   render(){
     return(
+      <div>
       <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}/>
+      <UserAdd />
+      </div>
     )
   }
 }
