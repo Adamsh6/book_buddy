@@ -1,14 +1,15 @@
 import React from 'react';
 
 const UserSelect = ({users, selectedUser, handleUserSelect}) => {
-
+  console.log(users[1])
   const options = users.map((user, index) => (
-    <option key={index} value={user}>{user.userName}</option>
+    <option key={index} value={index}>{user.userName}</option>
   ))
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleUserSelect(event.target.user);
+    console.log(event.target.user)
+    handleUserSelect(event.target.user.value);
   }
 
   return(

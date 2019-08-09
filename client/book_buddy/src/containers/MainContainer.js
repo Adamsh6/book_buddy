@@ -108,9 +108,10 @@ class MainContainer extends Component {
       // TODO Delete this after testing
       nullSelectedUser: null
     }
+    this.handleUserSelect = this.handleUserSelect.bind(this)
   }
-  handleUserSelect(user){
-    this.setState({selectedUser: user})
+  handleUserSelect(index){
+    this.setState({selectedUser: this.state.users[index]})
   }
   render(){
     return (
