@@ -4,7 +4,7 @@ import com.example.bookservice.models.Book;
 import com.example.bookservice.models.Trade;
 import com.example.bookservice.models.User;
 import com.example.bookservice.repositories.BookRepository;
-//import com.example.bookservice.repositories.TradeRepository;
+import com.example.bookservice.repositories.TradeRepository;
 import com.example.bookservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -25,8 +25,8 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     UserRepository userRepository;
 
-//    @Autowired
-//    TradeRepository tradeRepository;
+    @Autowired
+    TradeRepository tradeRepository;
 
     public DataLoader() {
 
@@ -53,11 +53,17 @@ public class DataLoader implements ApplicationRunner {
         Book book2 = new Book("Investing", "Glen Arnold", "Finance");
         bookRepository.save(book2);
 
-//        Trade trade1 = new Trade(True);
-//        tradeRepository.save(trade1);
-//
-//        Trade trade2 = new Trade(True);
-//        tradeRepository.save(trade2);
+        Book book3 = new Book("Social Ventures", "Yunus Mohammed", "Buisness");
+        bookRepository.save(book3);
+
+        Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness");
+        bookRepository.save(book4);
+
+        Trade trade1 = new Trade();
+        tradeRepository.save(trade1);
+
+        Trade trade2 = new Trade();
+        tradeRepository.save(trade2);
 
 
         }
