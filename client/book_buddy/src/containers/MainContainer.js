@@ -108,23 +108,7 @@ class MainContainer extends Component {
           completed: true
         }
       ],
-      selectedUser:         {
-        userName: "jim1000",
-        books: [
-          {
-            title: "Elantris",
-            author: "Brandon Sanderson",
-            genre: "fantasy"
-          },
-          {
-            title: "A Feast for Crows",
-            author: "George R.R. Martin",
-            genre: "fantasy"
-          }
-
-        ],
-        trades: []
-      },
+      selectedUser: null,
       // TODO Delete this after testing
       nullSelectedUser: null
     }

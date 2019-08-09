@@ -1,6 +1,9 @@
 import React from 'react';
 
 const AvailableTradesList = ({trades, user}) => {
+  if(!user) {
+    window.location = '/'
+  }
 
   //Filters for not completed and not users trade
   const availableTrades = trades.filter((trade) => {

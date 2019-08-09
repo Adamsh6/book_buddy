@@ -1,7 +1,10 @@
 import React from 'react';
 
 const UserSelect = ({users, selectedUser, handleUserSelect}) => {
-
+    let defaultUser = "default"
+    if(selectedUser != null) {
+      defaultUser = users.indexOf(selectedUser)
+    }
 
   const options = users.map((user, index) => (
     <option key={index} value={index}>{user.userName}</option>
@@ -15,7 +18,8 @@ const UserSelect = ({users, selectedUser, handleUserSelect}) => {
   return(
     <div>
     <form onSubmit={handleSubmit}>
-    <select name="user">
+    <select name="user" defaultValue={defaultUser}>
+    <option disabled value="default">Please select your username</option>
     {options}
     </select>
     <button type="submit">Select User</button>
