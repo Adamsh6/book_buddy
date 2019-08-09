@@ -41,13 +41,17 @@ public class DataLoader implements ApplicationRunner {
         } catch (ParseException e) {
         e.printStackTrace();
         }
+
         User user1 = new User("William");
         userRepository.save(user1);
+
+        Trade trade1 = new Trade(user1);
 
         User user2 = new User("Susan");
         userRepository.save(user2);
 
         Book book1 = new Book("The Choice Factory", "Richard Shotton", "Business", user1);
+//        book1.setTrade(trade1);
         bookRepository.save(book1);
 
         Book book2 = new Book("Investing", "Glen Arnold", "Finance", user1);
@@ -59,7 +63,6 @@ public class DataLoader implements ApplicationRunner {
         Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness", user2);
         bookRepository.save(book4);
 
-        Trade trade1 = new Trade(user1);
         trade1.setUser1(user1);
         trade1.setUser2(user2);
         tradeRepository.save(trade1);

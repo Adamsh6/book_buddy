@@ -1,8 +1,11 @@
 package com.example.bookservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+
+import static com.sun.tools.doclint.Entity.trade;
 
 @Entity
 @Table(name="books")
@@ -23,6 +26,15 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "book_trades",
+            joinColumns = {@JoinColumn(name = "book_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="trade_id", nullable = false, updatable = false)}
+    )
+
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -32,6 +44,7 @@ public class Book {
         this.author = author;
         this.genre = genre;
         this.user = user;
+//        this.trade = null;
 
     }
 
@@ -77,4 +90,12 @@ public class Book {
     public void setUser(User user) {
         this.user = user;
     }
+
+//    public Trade getTrade() {
+//        return trade;
+//    }
+//
+//    public void setTrade(Trade trade) {
+//        this.trade = trade;
+//    }
 }
