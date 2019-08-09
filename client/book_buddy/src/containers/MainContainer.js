@@ -53,7 +53,7 @@ class MainContainer extends Component {
       <Router>
       <NavBar />
       <Switch>
-      <Route exact path='/books' render={() => <BooksList user={this.state.selectedUser}/>} />
+      <Route exact path='/books' render={() => <BooksList user={this.state.nullSelectedUser}/>} />
       <Route exact path='/books/new' render={() => <AddBookFormContainer />} />
       <Route exact path='/trades' render={() => <AvailableTradesList />} />
       <Route exact path='/trades_history' render={() => <PastTradesList />} />

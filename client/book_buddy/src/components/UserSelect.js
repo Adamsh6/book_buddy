@@ -1,8 +1,19 @@
 import React from 'react';
 
-const UserSelect = () => {
+const UserSelect = ({users, selectedUser}) => {
+
+  const options = users.map((user, index) => (
+    <option key={index} value={user}>{user.userName}</option>
+  ))
+
   return(
-    <div>This is User Selector</div>
+    <div>
+    <form>
+    <select name="user">
+    {options}
+    </select>
+    </form>
+    </div>
   )
 }
 
