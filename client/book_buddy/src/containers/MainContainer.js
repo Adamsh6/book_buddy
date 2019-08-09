@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Redirect} from 'react-router-dom'
 import LogInContainer from './users/LogInContainer';
 import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
 import PastTradesList from '../components/trades/PastTradesList';
 import AddBookFormContainer from './books/AddBookFormContainer';
-import NavBar from '../NavBar'
+import NavBar from '../NavBar';
+import Request from '../helpers/request';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -108,12 +108,33 @@ class MainContainer extends Component {
           completed: true
         }
       ],
-      selectedUser: null,
-      // TODO Delete this after testing
-      nullSelectedUser: null
+      books2: [],
+      users2: [],
+      trades2: [],
+      selectedUser: null
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
   }
+
+  componentDidMount(){
+     fetch('/api/books')
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+     const request = new Request()
+     const promise1 = request.get('/api/books')
+     const promise2 = request.get('/api/users')
+     const promise3 = request.get('/api/trades')
+     const promises = [promise1, promise2, promise3]
+
+     Promise.all(promises).then((data) => {
+       console.log(data)
+       this.setState({
+         books2: data[0]._embedded.books,
+         users2: data[1]._embedded.users,
+         trades2: data[2]._embedded.trades
+       })
+     })
+   }
 
   handleUserSelect(index){
     this.setState({selectedUser: this.state.users[index]})
