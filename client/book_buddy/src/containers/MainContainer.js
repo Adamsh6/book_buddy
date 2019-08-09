@@ -109,6 +109,9 @@ class MainContainer extends Component {
       nullSelectedUser: null
     }
   }
+  handleUserSelect(user){
+    this.setState({selectedUser: user})
+  }
   render(){
     return (
       <div>
@@ -130,7 +133,8 @@ class MainContainer extends Component {
       <Route exact path='/'
       render={() => <LogInContainer
         users={this.state.users}
-        selectedUser={this.state.selectedUser}/>} />
+        selectedUser={this.state.selectedUser}
+        handleUserSelect={this.handleUserSelect}/>} />
       </Switch>
       </Router>
       </div>

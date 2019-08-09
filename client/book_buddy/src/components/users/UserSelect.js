@@ -1,14 +1,19 @@
 import React from 'react';
 
-const UserSelect = ({users, selectedUser}) => {
+const UserSelect = ({users, selectedUser, handleUserSelect}) => {
 
   const options = users.map((user, index) => (
     <option key={index} value={user}>{user.userName}</option>
   ))
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleUserSelect(event.target.user);
+  }
+
   return(
     <div>
-    <form>
+    <form onSubmit={handleSubmit}>
     <select name="user">
     {options}
     </select>

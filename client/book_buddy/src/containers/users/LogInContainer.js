@@ -9,7 +9,8 @@ class LogInContainer extends Component {
   render(){
     return(
       <div>
-      <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}/>
+      <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}
+      handleUserSelect={this.props.handleUserSelect}/>
       <UserAdd />
       </div>
     )

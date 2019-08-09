@@ -3,7 +3,7 @@ import React from 'react';
 const AvailableTradesList = ({trades, user}) => {
 
   const availableTrades = trades.filter((trade) => {
-    return trade.completed === false && user.userName != trade.user1.userName
+    return trade.completed === false && user.userName !== trade.user1.userName
   })
 
   const availableTradesList = availableTrades.map((trade, index) => (
