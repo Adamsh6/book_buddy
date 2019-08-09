@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import UserSelect from '../components/UserSelect';
+import LogInContainer from './users/LogInContainer';
 import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
 import PastTradesList from '../components/trades/PastTradesList';
@@ -57,7 +57,7 @@ class MainContainer extends Component {
       <Route exact path='/books/new' render={() => <AddBookFormContainer />} />
       <Route exact path='/trades' render={() => <AvailableTradesList />} />
       <Route exact path='/trades_history' render={() => <PastTradesList />} />
-      <Route exact path='/' render={() => <UserSelect users={this.state.users} selectedUser={this.state.selectedUser}/>} />
+      <Route exact path='/' render={() => <LogInContainer users={this.state.users} selectedUser={this.state.selectedUser}/>} />
       </Switch>
       </Router>
       </div>

@@ -12,6 +12,7 @@ const UserSelect = ({users, selectedUser}) => {
     <select name="user">
     {options}
     </select>
+    <button type="submit">Select User</button>
     </form>
     </div>
   )
