@@ -130,6 +130,7 @@ class MainContainer extends Component {
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
   }
+
   handleUserSelect(index){
     this.setState({selectedUser: this.state.users[index]})
   }
