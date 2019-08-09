@@ -60,7 +60,10 @@ public class DataLoader implements ApplicationRunner {
         bookRepository.save(book4);
 
         Trade trade1 = new Trade(user1);
+        trade1.setUser1(user1);
+        trade1.setUser2(user2);
         tradeRepository.save(trade1);
+
 
         Trade trade2 = new Trade(user2);
         tradeRepository.save(trade2);

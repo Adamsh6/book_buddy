@@ -17,23 +17,36 @@ public class Trade {
     private Boolean completed;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "user1_id", nullable = false)
+    private User user1;
+
+    @ManyToOne
+    @JoinColumn(name = "user2_id", nullable = true)
+    private User user2;
 
     public Trade(User user) {
         this.completed = false;
-        this.user = user;
+        this.user1 = user;
+        this.user2 = null;
     }
 
     public Trade() {
     }
 
-    public User getUser() {
-        return user;
+    public User getUser1() {
+        return user1;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser1(User user1) {
+        this.user1 = user1;
+    }
+
+    public User getUser2() {
+        return user2;
+    }
+
+    public void setUser2(User user2) {
+        this.user2 = user2;
     }
 
     public long getId() {
