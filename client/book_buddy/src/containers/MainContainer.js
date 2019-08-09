@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Redirect} from 'react-router-dom'
 import LogInContainer from './users/LogInContainer';
 import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
@@ -29,7 +30,27 @@ class MainContainer extends Component {
 
           ],
           trades: [],
-          tradesHistory: []
+          tradesHistory: [
+            {
+              user1: {
+                userName: "dave34"
+              },
+              book1: {
+                title: "Catch-22",
+                author: "Joseph Heller",
+                genre: "comedy"
+              },
+              user2: {
+                userName: "jim1000"
+              },
+              book2: {
+                title: "Catch-22",
+                author: "Joseph Heller",
+                genre: "comedy"
+              },
+              completed: true
+            }
+          ]
         },
         {
           userName: "dave34",
@@ -102,8 +123,7 @@ class MainContainer extends Component {
           }
 
         ],
-        trades: [],
-        tradesHistory: []
+        trades: []
       },
       // TODO Delete this after testing
       nullSelectedUser: null
@@ -113,6 +133,8 @@ class MainContainer extends Component {
   handleUserSelect(index){
     this.setState({selectedUser: this.state.users[index]})
   }
+
+
   render(){
     return (
       <div>
