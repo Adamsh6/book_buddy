@@ -1,5 +1,8 @@
 package com.example.bookservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,14 +14,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-//    private List<Book> books;
-//    private List<Trade> trades;
-//    private List<TradeHistory> tradesHistory;
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "user")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user1")
+    private List<Trade> trades;
 
 
 
@@ -43,5 +50,21 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(List<Trade> trades) {
+        this.trades = trades;
     }
 }

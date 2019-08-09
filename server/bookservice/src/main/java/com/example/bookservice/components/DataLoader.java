@@ -45,7 +45,7 @@ public class DataLoader implements ApplicationRunner {
         User user1 = new User("William");
         userRepository.save(user1);
 
-        Trade trade1 = new Trade(user1);
+
 
         User user2 = new User("Susan");
         userRepository.save(user2);
@@ -63,12 +63,13 @@ public class DataLoader implements ApplicationRunner {
         Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness", user2);
         bookRepository.save(book4);
 
-        trade1.setUser1(user1);
+        Trade trade1 = new Trade(user1, book1);
+
         trade1.setUser2(user2);
         tradeRepository.save(trade1);
 
 
-        Trade trade2 = new Trade(user2);
+        Trade trade2 = new Trade(user2, book4);
         tradeRepository.save(trade2);
 
 

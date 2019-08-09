@@ -5,6 +5,8 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static com.sun.tools.doclint.Entity.trade;
 
 @Entity
@@ -26,26 +28,19 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "book_trades",
-            joinColumns = {@JoinColumn(name = "book_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="trade_id", nullable = false, updatable = false)}
-    )
-
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "book1")
+    private List<Trade> trades;
 
     public Book(String title, String author, String genre, User user) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.user = user;
-//        this.trade = null;
-
     }
 
     public Book() {
@@ -91,11 +86,11 @@ public class Book {
         this.user = user;
     }
 
-//    public Trade getTrade() {
-//        return trade;
-//    }
-//
-//    public void setTrade(Trade trade) {
-//        this.trade = trade;
-//    }
+    public List<Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(List<Trade> trades) {
+        this.trades = trades;
+    }
 }
