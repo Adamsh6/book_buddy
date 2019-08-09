@@ -1,8 +1,18 @@
 package com.example.bookservice.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="trades")
+
 public class Trade {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "trade")
     private Boolean completed;
 
     public Trade(long id) {
