@@ -62,14 +62,27 @@ class MainContainer extends Component {
         },
         {
           user1: {
-            userName: "jim1000"
+            userName: "dave34"
           },
           book1: {
-            title: "Elantris",
-            author: "Brandon Sanderson",
-            genre: "fantasy"
+            title: "ABOOK",
+            author: "Person Personson",
+            genre: "good"
           },
-          user2: "dave34",
+          user2: null,
+          book2: null,
+          completed: false
+        },
+        {
+          user1: {
+            userName: "dave34"
+          },
+          book1: {
+            title: "Catch-22",
+            author: "Joseph Heller",
+            genre: "comedy"
+          },
+          user2: "jim1000",
           book2: true,
           completed: true
         }
@@ -103,11 +116,21 @@ class MainContainer extends Component {
       <Router>
       <NavBar />
       <Switch>
-      <Route exact path='/books' render={() => <BooksList user={this.state.selectedUser}/>} />
-      <Route exact path='/books/new' render={() => <AddBookFormContainer />} />
-      <Route exact path='/trades' render={() => <AvailableTradesList />} />
-      <Route exact path='/trades_history' render={() => <PastTradesList />} />
-      <Route exact path='/' render={() => <LogInContainer users={this.state.users} selectedUser={this.state.selectedUser}/>} />
+      <Route exact path='/books'
+      render={() => <BooksList user={this.state.selectedUser}/>} />
+      <Route exact path='/books/new'
+      render={() => <AddBookFormContainer />} />
+      <Route exact path='/trades'
+      render={() => <AvailableTradesList
+        trades={this.state.trades}
+        user={this.state.selectedUser}/>} />
+      <Route exact path='/trades_history'
+      render={() => <PastTradesList
+        user={this.state.selectedUser}/>} />
+      <Route exact path='/'
+      render={() => <LogInContainer
+        users={this.state.users}
+        selectedUser={this.state.selectedUser}/>} />
       </Switch>
       </Router>
       </div>
