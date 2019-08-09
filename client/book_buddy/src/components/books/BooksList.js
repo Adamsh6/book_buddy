@@ -1,8 +1,19 @@
 import React from 'react';
 
-const BooksList = () => {
+const BooksList = ({user}) => {
+  if(!user) {
+    window.location = '/'
+  }
+  const books = user.books.map((book, index) => (
+    <li key={index}>{book.title} || {book.author}</li>
+  ))
   return(
-    <p>This is the BooksList</p>
+    <div>
+    <ul>
+    {books}
+    </ul>
+
+    </div>
   )
 }
 

@@ -21,13 +21,29 @@ class MainContainer extends Component {
               author: "Brandon Sanderson",
               genre: "fantasy"
             }
+
           ],
           trades: [],
           tradesHistory: []
         }
       ],
       books: [],
-      trades: []
+      trades: [],
+      selectedUser:         {
+                userName: "jim",
+                books: [
+                  {
+                    title: "Elantris",
+                    author: "Brandon Sanderson",
+                    genre: "fantasy"
+                  }
+
+                ],
+                trades: [],
+                tradesHistory: []
+              },
+      // TODO Delete this after testing
+      nullSelectedUser: null
     }
   }
   render(){
@@ -37,11 +53,11 @@ class MainContainer extends Component {
       <Router>
       <NavBar />
       <Switch>
-      <Route exact path='/books' render={() => <BooksList />} />
+      <Route exact path='/books' render={() => <BooksList user={this.state.selectedUser}/>} />
       <Route exact path='/books/new' render={() => <AddBookFormContainer />} />
       <Route exact path='/trades' render={() => <AvailableTradesList />} />
       <Route exact path='/trades_history' render={() => <PastTradesList />} />
-      <Route exact path='/' render={() => <UserSelect />} />
+      <Route exact path='/' render={() => <UserSelect users={this.state.users} selectedUser={this.state.selectedUser}/>} />
       </Switch>
       </Router>
       </div>
