@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BooksList = ({user, books}) => {
+const BooksList = ({user, books, handleAddTrade}) => {
   if(!user) {
     window.location = '/'
   }
@@ -9,7 +9,17 @@ const BooksList = ({user, books}) => {
   //To add to a trade, we need to create a new trade, with user1 being selected user and book1 being the book the button is associated with.
   const handleChange = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
+    const book = books[event.target.value];
+    const lastTrade = book.trades[book.trades.length - 1]
+    if(lastTrade === undefined || lastTrade.completed === true){
+      const newTrade = {
+        user1: user._links.self.href,
+        book1: book._links.self.href,
+        completed: false
+      }
+      console.log(newTrade);
+      handleAddTrade(newTrade)
+    }
   }
 
   const checkedBox = () => (
@@ -21,8 +31,8 @@ const BooksList = ({user, books}) => {
   })
   const usersBooksJSX = usersBooks.map((book, index) => {
     //Equals -1 if trades array is empty
-    const lastTrade = book.trades.length - 1
-    if(lastTrade === -1 || book.trades[lastTrade].completed === true)
+    const lastTradeIndex = book.trades.length - 1
+    if(lastTradeIndex === -1 || book.trades[lastTradeIndex].completed === true)
     {
       return(
         <li key={index}>

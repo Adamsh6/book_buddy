@@ -42,6 +42,7 @@ public class Trade {
     }
 
     public Trade() {
+        this.completed = false;
     }
 
     public User getUser1() {
