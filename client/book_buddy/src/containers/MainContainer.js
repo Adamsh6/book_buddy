@@ -52,7 +52,6 @@ class MainContainer extends Component {
   }
 
   handleDeleteTrade(id){
-    this.state.waiting = true
     const request = new Request();
     const url = '/api/trades/' + id
     request.delete(url).then(() => this.getAllData())
@@ -61,7 +60,6 @@ class MainContainer extends Component {
   }
 
   handleAddTrade(payload){
-    this.state.waiting = true;
     const request = new Request();
     request.post('/api/trades', payload).then(() => this.getAllData())
 
