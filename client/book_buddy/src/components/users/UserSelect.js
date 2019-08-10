@@ -7,7 +7,7 @@ const UserSelect = ({users, selectedUser, handleUserSelect}) => {
     }
 
   const options = users.map((user, index) => (
-    <option key={index} value={index}>{user.userName}</option>
+    <option key={index} value={index}>{user.name}</option>
   ))
 
   const handleSubmit = (event) => {

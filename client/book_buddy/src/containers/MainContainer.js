@@ -13,104 +13,104 @@ class MainContainer extends Component {
     super(props);
 
     this.state = {
-      users: [
-        {
-          userName: "jim1000",
-          books: [
-            {
-              title: "Elantris",
-              author: "Brandon Sanderson",
-              genre: "fantasy"
-            },
-            {
-              title: "A Feast for Crows",
-              author: "George R.R. Martin",
-              genre: "fantasy"
-            }
-
-          ],
-          trades: [],
-          tradesHistory: [
-            {
-              user1: {
-                userName: "dave34"
-              },
-              book1: {
-                title: "Catch-22",
-                author: "Joseph Heller",
-                genre: "comedy"
-              },
-              user2: {
-                userName: "jim1000"
-              },
-              book2: {
-                title: "Catch-22",
-                author: "Joseph Heller",
-                genre: "comedy"
-              },
-              completed: true
-            }
-          ]
-        },
-        {
-          userName: "dave34",
-          books: [
-            {
-              title: "Catch-22",
-              author: "Joseph Heller",
-              genre: "comedy"
-            }
-
-          ],
-          trades: [],
-          tradesHistory: []
-        }
-      ],
+      // users: [
+      //   {
+      //     userName: "jim1000",
+      //     books: [
+      //       {
+      //         title: "Elantris",
+      //         author: "Brandon Sanderson",
+      //         genre: "fantasy"
+      //       },
+      //       {
+      //         title: "A Feast for Crows",
+      //         author: "George R.R. Martin",
+      //         genre: "fantasy"
+      //       }
+      //
+      //     ],
+      //     trades: [],
+      //     tradesHistory: [
+      //       {
+      //         user1: {
+      //           userName: "dave34"
+      //         },
+      //         book1: {
+      //           title: "Catch-22",
+      //           author: "Joseph Heller",
+      //           genre: "comedy"
+      //         },
+      //         user2: {
+      //           userName: "jim1000"
+      //         },
+      //         book2: {
+      //           title: "Catch-22",
+      //           author: "Joseph Heller",
+      //           genre: "comedy"
+      //         },
+      //         completed: true
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     userName: "dave34",
+      //     books: [
+      //       {
+      //         title: "Catch-22",
+      //         author: "Joseph Heller",
+      //         genre: "comedy"
+      //       }
+      //
+      //     ],
+      //     trades: [],
+      //     tradesHistory: []
+      //   }
+      // ],
+      // books: [],
+      // trades: [
+      //   {
+      //     user1: {
+      //       userName: "jim1000"
+      //     },
+      //     book1: {
+      //       title: "Elantris",
+      //       author: "Brandon Sanderson",
+      //       genre: "fantasy"
+      //     },
+      //     user2: null,
+      //     book2: null,
+      //     completed: false
+      //   },
+      //   {
+      //     user1: {
+      //       userName: "dave34"
+      //     },
+      //     book1: {
+      //       title: "ABOOK",
+      //       author: "Person Personson",
+      //       genre: "good"
+      //     },
+      //     user2: null,
+      //     book2: null,
+      //     completed: false
+      //   },
+      //   {
+      //     user1: {
+      //       userName: "dave34"
+      //     },
+      //     book1: {
+      //       title: "Catch-22",
+      //       author: "Joseph Heller",
+      //       genre: "comedy"
+      //     },
+      //     user2: "jim1000",
+      //     book2: true,
+      //     completed: true
+      //   }
+      // ],
       books: [],
-      trades: [
-        {
-          user1: {
-            userName: "jim1000"
-          },
-          book1: {
-            title: "Elantris",
-            author: "Brandon Sanderson",
-            genre: "fantasy"
-          },
-          user2: null,
-          book2: null,
-          completed: false
-        },
-        {
-          user1: {
-            userName: "dave34"
-          },
-          book1: {
-            title: "ABOOK",
-            author: "Person Personson",
-            genre: "good"
-          },
-          user2: null,
-          book2: null,
-          completed: false
-        },
-        {
-          user1: {
-            userName: "dave34"
-          },
-          book1: {
-            title: "Catch-22",
-            author: "Joseph Heller",
-            genre: "comedy"
-          },
-          user2: "jim1000",
-          book2: true,
-          completed: true
-        }
-      ],
-      books2: [],
-      users2: [],
-      trades2: [],
+      users: [],
+      trades: [],
       selectedUser: null
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
@@ -129,15 +129,24 @@ class MainContainer extends Component {
      Promise.all(promises).then((data) => {
        console.log(data)
        this.setState({
-         books2: data[0]._embedded.books,
-         users2: data[1]._embedded.users,
-         trades2: data[2]._embedded.trades
+         books: data[0]._embedded.books,
+         users: data[1]._embedded.users,
+         trades: data[2]._embedded.trades
        })
      })
    }
 
   handleUserSelect(index){
     this.setState({selectedUser: this.state.users[index]})
+  }
+
+  handleDeleteTrade(index){
+
+  }
+
+  handleAddTrade(payload){
+    const request = new Request();
+    request.post('/api/trades/new', payload)
   }
 
 
@@ -149,7 +158,9 @@ class MainContainer extends Component {
       <NavBar />
       <Switch>
       <Route exact path='/books'
-      render={() => <BooksList user={this.state.selectedUser}/>} />
+      render={() => <BooksList
+        user={this.state.selectedUser}
+        books={this.state.books}/>} />
       <Route exact path='/books/new'
       render={() => <AddBookFormContainer />} />
       <Route exact path='/trades'
