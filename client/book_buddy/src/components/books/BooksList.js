@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BooksList = ({user, books, handleAddTrade}) => {
+const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => {
   if(!user) {
     window.location = '/'
   }
@@ -11,6 +11,7 @@ const BooksList = ({user, books, handleAddTrade}) => {
     event.preventDefault();
     const book = books[event.target.value];
     const lastTrade = book.trades[book.trades.length - 1]
+    //Add trade if book isn't being traded, delete trade if it is
     if(lastTrade === undefined || lastTrade.completed === true){
       const newTrade = {
         user1: user._links.self.href,
@@ -19,12 +20,13 @@ const BooksList = ({user, books, handleAddTrade}) => {
       }
       console.log(newTrade);
       handleAddTrade(newTrade)
+    } else {
+      const trade = trades.find((trade) => (
+        trade.completed === false && trade.book1.title === book.title
+      ))
+      handleDeleteTrade(trade.id)
     }
   }
-
-  const checkedBox = () => (
-    <input type="checkbox" id="forTrade" name="forTrade" checked />
-  )
 
   const usersBooks = books.filter((book) => {
     return book.user.name === user.name
@@ -37,14 +39,14 @@ const BooksList = ({user, books, handleAddTrade}) => {
       return(
         <li key={index}>
         <p>{book.title} by {book.author}</p>
-        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index}/>
+        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
         </li>
       )
     } else {
       return (
         <li key={index}>
         <p>{book.title} by {book.author}</p>
-        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked/>
+        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
         </li>
       )
     }

@@ -111,17 +111,16 @@ class MainContainer extends Component {
       books: [],
       users: [],
       trades: [],
-      selectedUser: null
+      selectedUser: null,
+      waiting: false
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
     this.getAllData = this.getAllData.bind(this)
     this.handleAddTrade = this.handleAddTrade.bind(this)
+    this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
   }
 
   getAllData(){
-    fetch('/api/books')
-     .then((res) => res.json())
-     .then((data) => console.log(data))
     const request = new Request()
     const promise1 = request.get('/api/books')
     const promise2 = request.get('/api/users')
@@ -129,12 +128,12 @@ class MainContainer extends Component {
     const promises = [promise1, promise2, promise3]
 
     Promise.all(promises).then((data) => {
-      console.log(data)
       this.setState({
         books: data[0]._embedded.books,
         users: data[1]._embedded.users,
         trades: data[2]._embedded.trades
       })
+      console.log(this.state.waiting)
     })
   }
 
@@ -147,14 +146,21 @@ class MainContainer extends Component {
     this.setState({selectedUser: this.state.users[index]})
   }
 
-  handleDeleteTrade(index){
+  handleDeleteTrade(id){
+    this.state.waiting = true
+    const request = new Request();
+    const url = '/api/trades/' + id
+    request.delete(url).then(() => this.getAllData())
 
+    // window.alert("You took the book off trade!")
   }
 
   handleAddTrade(payload){
+    this.state.waiting = true;
     const request = new Request();
-    request.post('/api/trades', payload).then(() => console.log("Done"))
-    this.getAllData()
+    request.post('/api/trades', payload).then(() => this.getAllData())
+
+    // window.alert("You added the book to trade!")
   }
 
 
@@ -169,6 +175,8 @@ class MainContainer extends Component {
       render={() => <BooksList
         user={this.state.selectedUser}
         books={this.state.books}
+        trades={this.state.trades}
+        handleDeleteTrade={this.handleDeleteTrade}
         handleAddTrade={this.handleAddTrade}/>} />
       <Route exact path='/books/new'
       render={() => <AddBookFormContainer />} />
