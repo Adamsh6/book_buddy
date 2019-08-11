@@ -86,7 +86,8 @@ class MainContainer extends Component {
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
-        user={this.state.selectedUser}/>} />
+        user={this.state.selectedUser}
+        books={this.state.books}/>} />
       <Route exact path='/trades_history'
       render={() => <PastTradesList
         user={this.state.selectedUser}/>} />
