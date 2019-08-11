@@ -1,6 +1,9 @@
 package com.example.bookservice.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +19,9 @@ public class User {
     @Column(name = "name")
     private String name;
 
-//    private List<Book> books;
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Book> books;
 //    private List<Trade> trades;
 //    private List<TradeHistory> tradesHistory;
 
@@ -24,6 +29,7 @@ public class User {
 
     public User(String name) {
         this.name = name;
+        this.books = new ArrayList<Book>();
     }
 
     public Long getId() {
@@ -37,11 +43,22 @@ public class User {
     public User() {
     }
 
+
+
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

@@ -39,17 +39,20 @@ public class Book {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    private Trade trade;
+
     public Book(String title, String author, String genre, User user) {
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.user = user;
-//        this.trade = null;
+        this.trade = null;
 
     }
 
     public Book() {
     }
+
 
     public Long getId() {
         return id;
@@ -91,11 +94,11 @@ public class Book {
         this.user = user;
     }
 
-//    public Trade getTrade() {
-//        return trade;
-//    }
-//
-//    public void setTrade(Trade trade) {
-//        this.trade = trade;
-//    }
+    public Trade getTrade() {
+        return trade;
+    }
+
+    public void setTrade(Trade trade) {
+        this.trade = trade;
+    }
 }

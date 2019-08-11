@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -62,6 +63,7 @@ public class DataLoader implements ApplicationRunner {
 
         Book book4 = new Book("Thinking Fast and Slow", "Daniel Kannemann", "Buisness", user2);
         bookRepository.save(book4);
+
 
         trade1.setUser1(user1);
         trade1.setUser2(user2);
