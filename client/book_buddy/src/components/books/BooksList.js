@@ -15,8 +15,7 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     if(lastTrade === undefined || lastTrade.completed === true){
       const newTrade = {
         user1: user._links.self.href,
-        book1: book._links.self.href,
-        completed: false
+        book1: book._links.self.href
       }
       console.log(newTrade);
       handleAddTrade(newTrade)
@@ -31,6 +30,7 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
   const usersBooks = books.filter((book) => {
     return book.user.name === user.name
   })
+
   const usersBooksJSX = usersBooks.map((book, index) => {
     //Equals -1 if trades array is empty
     const lastTradeIndex = book.trades.length - 1
@@ -53,17 +53,6 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
   }
 )
 
-
-
-//Old way of mapping
-  // const books1 = user.books.map((book, index) => (
-  //   <li key={index}>
-  //   <p>{book.title} by {book.author}</p>
-  //   <form>
-  //   <input type="checkbox" />
-  //   </form>
-  //   </li>
-  // ))
   return(
     <div>
     <h3>My Books</h3>
