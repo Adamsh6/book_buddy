@@ -8,7 +8,8 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
 
   //Returns all books the user owns
   const booksUserHas = books.filter((book, index) => {
-    return book.user.name === user.name
+    const lastTrade = book.trades[book.trades.length - 1]
+    return book.user.name === user.name && (lastTrade === undefined || lastTrade.completed === true)
   })
 
   //Maps books to options
@@ -28,6 +29,7 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
     })
   }
 
+  //TODO: instead of preventing user from trading book if up for trade, delete last trade if completed is false
   const handleSubmit = (event) => {
     event.preventDefault();
     const bookToTrade = booksUserHas[event.target.book2.value]
