@@ -81,8 +81,9 @@ class MainContainer extends Component {
         trades={this.state.trades}
         handleDeleteTrade={this.handleDeleteTrade}
         handleAddTrade={this.handleAddTrade}/>} />
-      <Route exact path='/books/new'
-      render={() => <AddBookFormContainer />} />
+      <Route exact path='/books/new' render={(props) =>{
+        return <AddBookFormContainer books={this.state.books} users={this.state.users}/>
+      }} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
