@@ -16,12 +16,12 @@ class MainContainer extends Component {
       books: [],
       users: [],
       trades: [],
-      selectedUser: null,
-      waiting: false
+      selectedUser: null
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
     this.getAllData = this.getAllData.bind(this)
     this.handleAddTrade = this.handleAddTrade.bind(this)
+    this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
   }
 
@@ -38,7 +38,6 @@ class MainContainer extends Component {
         users: data[1]._embedded.users,
         trades: data[2]._embedded.trades
       })
-      console.log(this.state.waiting)
     })
   }
 
@@ -66,6 +65,20 @@ class MainContainer extends Component {
     // window.alert("You added the book to trade!")
   }
 
+  //TODO: Steps to handle accept trade
+  handleAcceptTrade(payload){
+    const request = new Request();
+    const tradeUrl = '/api/trades/' + payload.tradeId;
+    const book1Url = '/api/books/' + payload.book1Id;
+    const book2Url = '/api/books/' + payload. ;
+    request.patch(tradeUrl, payload.trade)
+    .then(() => this.getAllData())
+    .then(() => request.patch(book1Url, payload.book1))
+    .then(() => this.getAllData())
+    .then(() => request.patch(book2Url, payload.book2))
+    .then(() => this.getAllData())
+  }
+
 
   render(){
     return (
@@ -87,7 +100,10 @@ class MainContainer extends Component {
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
-        user={this.state.selectedUser}/>} />
+        user={this.state.selectedUser}
+        books={this.state.books}
+        handleTrade={this.handleAcceptTrade}
+        users={this.state.users}/>} />
       <Route exact path='/trades_history'
       render={() => <PastTradesList
         user={this.state.selectedUser}/>} />
