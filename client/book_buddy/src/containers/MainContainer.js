@@ -113,6 +113,7 @@ class MainContainer extends Component {
       <Route exact path='/'
       render={() => <LogInContainer
         users={this.state.users}
+        getAllData={this.getAllData}
         selectedUser={this.state.selectedUser}
         handleUserSelect={this.handleUserSelect}/>} />
       </Switch>
