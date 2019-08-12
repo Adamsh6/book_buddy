@@ -9,7 +9,7 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
   //Returns all books the user owns
   const booksUserHas = books.filter((book, index) => {
     const lastTrade = book.trades[book.trades.length - 1]
-    return book.user.name === user.name && (lastTrade === undefined || lastTrade.completed === true)
+    return book.user.name === user.name 
   })
 
   const booksThatAreWanted = (user) => {

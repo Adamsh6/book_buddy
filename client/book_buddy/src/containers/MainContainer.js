@@ -30,9 +30,9 @@ class MainContainer extends Component {
 
   getAllData(){
     const request = new Request()
-    const promise1 = request.get('/api/books')
-    const promise2 = request.get('/api/users')
-    const promise3 = request.get('/api/trades')
+    const promise1 = request.get('/api/books?page=0&size=99999')
+    const promise2 = request.get('/api/users?page=0&size=99999')
+    const promise3 = request.get('/api/trades?page=0&size=99999')
     const promises = [promise1, promise2, promise3]
 
     Promise.all(promises).then((data) => {
