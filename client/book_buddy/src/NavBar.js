@@ -19,9 +19,6 @@ const NavBar = (props) => {
           <Link to="/trades">Find Trades</Link>
         </li>
         <li>
-          <Link to="/trades_history">Trade History</Link>
-        </li>
-        <li>
           <Link to="/" >Log In</Link>
         </li>
 
