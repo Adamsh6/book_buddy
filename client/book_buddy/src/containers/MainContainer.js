@@ -70,7 +70,7 @@ class MainContainer extends Component {
     const request = new Request();
     const tradeUrl = '/api/trades/' + payload.tradeId;
     const book1Url = '/api/books/' + payload.book1Id;
-    const book2Url = '/api/books/' + payload.book2Id;
+    const book2Url = '/api/books/' + payload. ;
     request.patch(tradeUrl, payload.trade)
     .then(() => this.getAllData())
     .then(() => request.patch(book1Url, payload.book1))
