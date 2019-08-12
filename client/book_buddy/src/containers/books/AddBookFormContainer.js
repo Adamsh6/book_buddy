@@ -16,7 +16,8 @@ class AddBookFormContainer extends Component {
   }
 
   render(){
-    return<BookForm users={this.props.users} handleBookPost={this.handleBookPost}/>
+    return<BookForm users={this.props.users} handleBookPost={this.handleBookPost}
+    user={this.props.user}/>
   }
 }
 

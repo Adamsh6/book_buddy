@@ -70,7 +70,7 @@ class MainContainer extends Component {
     const request = new Request();
     const tradeUrl = '/api/trades/' + payload.tradeId;
     const book1Url = '/api/books/' + payload.book1Id;
-    const book2Url = '/api/books/' + payload. ;
+    const book2Url = '/api/books/' + payload.book2Id;
     request.patch(tradeUrl, payload.trade)
     .then(() => this.getAllData())
     .then(() => request.patch(book1Url, payload.book1))
@@ -95,7 +95,10 @@ class MainContainer extends Component {
         handleDeleteTrade={this.handleDeleteTrade}
         handleAddTrade={this.handleAddTrade}/>} />
       <Route exact path='/books/new' render={(props) =>{
-        return <AddBookFormContainer books={this.state.books} users={this.state.users}/>
+        return <AddBookFormContainer
+        books={this.state.books}
+        users={this.state.users}
+        user={this.state.selectedUser}/>
       }} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
