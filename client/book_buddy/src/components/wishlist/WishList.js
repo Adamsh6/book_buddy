@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WishList = ({user}) => {
+const WishList = ({user, handleAddToWishList}) => {
   if(!user) {
     window.location = '/'
   }
@@ -9,8 +9,21 @@ const WishList = ({user}) => {
     <li key={index}>{title}</li>
   ))
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newWishlist = [...user.wishlist, event.target.title.value]
+    const payload = {
+      wishlist: newWishlist
+    }
+    handleAddToWishList(user.id, payload)
+  }
+
   return(
-    <div>I am a wishlist
+    <div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="title"/>
+      <button type="submit">Add</button>
+    </form>
     <ul>
     {books}
     </ul>

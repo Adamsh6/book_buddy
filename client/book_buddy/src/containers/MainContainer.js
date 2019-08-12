@@ -24,6 +24,7 @@ class MainContainer extends Component {
     this.handleAddTrade = this.handleAddTrade.bind(this)
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
+    this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 
   getAllData(){
@@ -80,6 +81,13 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
   }
 
+  handleAddToWishList(id, payload){
+    const request = new Request();
+    const userUrl = '/api/users/' + id
+    request.patch(userUrl, payload)
+    .then(() => this.getAllData())
+  }
+
 
   render(){
     return (
@@ -102,7 +110,8 @@ class MainContainer extends Component {
         user={this.state.selectedUser}/>
       }} />
       <Route exact path='/wishlist' render={() => <WishList
-        user={this.state.selectedUser}/>} />
+        user={this.state.selectedUser}
+        handleAddToWishList={this.handleAddToWishList}/>} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
