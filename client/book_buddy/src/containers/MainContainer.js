@@ -5,7 +5,7 @@ import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
 import PastTradesList from '../components/trades/PastTradesList';
 import AddBookFormContainer from './books/AddBookFormContainer';
-import WishList from '../components/wishlist/WishList';
+import WishListContainer from './wishlist/WishListContainer';
 import NavBar from '../NavBar';
 import Request from '../helpers/request';
 
@@ -17,14 +17,15 @@ class MainContainer extends Component {
       books: [],
       users: [],
       trades: [],
-      selectedUser: null
+      selectedUser: null,
+      changed: false
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
     this.getAllData = this.getAllData.bind(this)
     this.handleAddTrade = this.handleAddTrade.bind(this)
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
-    this.handleAddToWishList = this.handleAddToWishList.bind(this)
+    // this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 
   getAllData(){
@@ -81,12 +82,7 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
   }
 
-  handleAddToWishList(id, payload){
-    const request = new Request();
-    const userUrl = '/api/users/' + id
-    request.patch(userUrl, payload)
-    .then(() => this.getAllData())
-  }
+
 
 
   render(){
@@ -109,9 +105,9 @@ class MainContainer extends Component {
         users={this.state.users}
         user={this.state.selectedUser}/>
       }} />
-      <Route exact path='/wishlist' render={() => <WishList
+      <Route exact path='/wishlist' render={() => <WishListContainer
         user={this.state.selectedUser}
-        handleAddToWishList={this.handleAddToWishList}/>} />
+        getAllData={this.getAllData}/>} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
