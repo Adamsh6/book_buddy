@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => {
   if(!user) {
     window.location = '/'
@@ -37,26 +38,30 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     if(lastTradeIndex === -1 || book.trades[lastTradeIndex].completed === true)
     {
       return(
-        <li key={index}>
+        <div className="book-style">
+        <li className="book_element-style"key={index}>
         <p>{book.title} by {book.author}</p>
         <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
         </li>
+        </div>
       )
     } else {
       return (
+        <div className="book-style">
         <li key={index}>
         <p>{book.title} by {book.author}</p>
         <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
         </li>
+        </div>
       )
     }
   }
 )
 
   return(
-    <div>
+    <div >
     <h3>My Books</h3>
-    <ul>
+    <ul className="book-container">
     {usersBooksJSX}
     </ul>
 

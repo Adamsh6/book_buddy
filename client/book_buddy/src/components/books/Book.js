@@ -8,7 +8,7 @@ const Book = ({book}) => {
 
   const url = '/books/' + book.id;
   return(
-    <Fragment>
+    <Fragment >
       <Link to={url} className='title'>{book.title} </Link>
       <p>Author: {book.author}</p>
       <p>Genre: {book.genre}</p>

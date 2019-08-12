@@ -4,25 +4,27 @@ import {Link} from 'react-router-dom';
 const NavBar = (props) => {
   return (
     <header>
-
-      <ul>
+      <div className="nav-bar">
+      <ul className="nav-links">
         <li>
-          <Link to="/books">My Books</Link>
+          <Link to="/books" className="nav-item">My Books</Link>
         </li>
         <li>
-          <Link to="/books/new">Add Book</Link>
+          <Link to="/books/new" className="nav-item">Add Book</Link>
         </li>
         <li>
-          <Link to="/trades">Find Trades</Link>
+          <Link to="/trades" className="nav-item">Find Trades</Link>
         </li>
         <li>
-          <Link to="/trades_history">Trade History</Link>
+          <Link to="/trades_history" className="nav-item">Trade History</Link>
         </li>
         <li>
-          <Link to="/" >Log In</Link>
+          <Link to="/" className="nav-item">Log In</Link>
         </li>
 
       </ul>
+
+      </div>
     </header>
   )
 }

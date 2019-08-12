@@ -22,6 +22,61 @@
 .App-link {
   color: #61dafb;
 }
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  background-color: darkblue;
+  padding-left: 30px;
+  padding-right: 10px;
+
+
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+
+}
+
+.nav-item  {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.book-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+.book-style {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-color: 1 px solid black;
+  color: blue;
+  list-style-type: none;
+}
+
+.book-elements-style {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  border-color: 1 px solid black;
+  color: blue;
+
+
+
+}
+
 
 @keyframes App-logo-spin {
   from {

@@ -85,7 +85,7 @@ class MainContainer extends Component {
       <div>
       <h1>BOOK BUDDY</h1>
       <Router>
-      <NavBar />
+      <NavBar/>
       <Switch>
       <Route exact path='/books'
       render={() => <BooksList
