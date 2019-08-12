@@ -15,6 +15,7 @@ public interface EmbedBooks {
         String getName();
         List<Book> getBooks();
         List<Trade> getTrades();
+        List<String> getWishlist();
 
 
 }

@@ -13,6 +13,9 @@ const NavBar = (props) => {
           <Link to="/books/new">Add Book</Link>
         </li>
         <li>
+          <Link to="/wishlist">Wishlist</Link>
+        </li>
+        <li>
           <Link to="/trades">Find Trades</Link>
         </li>
         <li>

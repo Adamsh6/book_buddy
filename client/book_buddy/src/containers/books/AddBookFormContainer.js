@@ -6,7 +6,12 @@ class AddBookFormContainer extends Component {
   constructor(props){
     super(props);
     this.handleBookPost = this.handleBookPost.bind(this);
+    if(!this.props.user) {
+      window.location = '/'
+    }
   }
+
+
 
   handleBookPost(book){
     const request = new Request();

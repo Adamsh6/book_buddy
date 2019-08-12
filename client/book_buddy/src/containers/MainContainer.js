@@ -5,6 +5,7 @@ import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
 import PastTradesList from '../components/trades/PastTradesList';
 import AddBookFormContainer from './books/AddBookFormContainer';
+import WishList from '../components/wishlist/WishList';
 import NavBar from '../NavBar';
 import Request from '../helpers/request';
 
@@ -100,6 +101,8 @@ class MainContainer extends Component {
         users={this.state.users}
         user={this.state.selectedUser}/>
       }} />
+      <Route exact path='/wishlist' render={() => <WishList
+        user={this.state.selectedUser}/>} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,10 +28,14 @@ public class User {
     @OneToMany(mappedBy = "user1")
     private List<Trade> trades;
 
+    @Column
+    @ElementCollection(targetClass=String.class)
+    private List<String> wishlist;
 
 
     public User(String name) {
         this.name = name;
+        this.wishlist = new ArrayList<>();
     }
 
     public Long getId() {
@@ -42,6 +47,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public List<String> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(List<String> wishlist) {
+        this.wishlist = wishlist;
     }
 
     public String getName() {
