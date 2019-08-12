@@ -1,39 +1,58 @@
-import React from 'react';
+import React, {Component} from 'react';
+import WishListList from './WishListList'
 
-const WishList = ({user, handleAddToWishList, users}) => {
-  if(!user) {
-    window.location = '/'
+class WishList extends Component {
+  constructor(props){
+    super(props)
+    if(!this.props.user) {
+      window.location = '/'
+    }
+    this.state = {
+      title: ""
+    }
+
+
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.getSelectedUserLocation = this.getSelectedUserLocation.bind(this)
   }
-  const getSelectedUserLocation = () => {
-    return users.findIndex((userInArray) => (
-      userInArray.id === user.id
+
+  handleChange(event){
+    this.setState({title: event.target.value});
+  }
+
+  getSelectedUserLocation() {
+    return this.props.users.findIndex((userInArray) => (
+      userInArray.id === this.props.user.id
     ))
   }
 
-  const books = users[getSelectedUserLocation()].wishlist.map((title, index) => (
-    <li key={index}>{title}</li>
-  ))
 
-  const handleSubmit = (event) => {
+
+
+  handleSubmit(event){
     event.preventDefault();
-    const newWishlist = [...users[getSelectedUserLocation()].wishlist, event.target.title.value]
+
+    const newWishlist = [...this.props.users[this.getSelectedUserLocation()].wishlist, event.target.title.value]
     const payload = {
       wishlist: newWishlist
     }
-    handleAddToWishList(user.id, payload)
-  }
+    this.setState({title: ""})
+    this.props.handleAddToWishList(this.props.user.id, payload)
 
+  }
+  render(){
   return(
     <div>
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="title"/>
-      <button type="submit">Add</button>
+    <form onSubmit={this.handleSubmit}>
+    <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+    <button type="submit">Add</button>
     </form>
-    <ul>
-    {books}
-    </ul>
+    <WishListList users={this.props.users} user={this.props.user}/>
     </div>
   )
+}
 }
 
 export default WishList

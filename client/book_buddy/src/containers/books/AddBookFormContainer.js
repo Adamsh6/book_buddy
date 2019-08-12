@@ -7,14 +7,12 @@ class AddBookFormContainer extends Component {
   constructor(props){
     super(props);
     this.handleBookPost = this.handleBookPost.bind(this);
-<<<<<<< HEAD
 
     this.state = {
       redirect: false
-=======
+    }
     if(!this.props.user) {
       window.location = '/'
->>>>>>> develop
     }
   }
 
