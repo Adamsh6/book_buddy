@@ -7,28 +7,35 @@ class AddBookFormContainer extends Component {
   constructor(props){
     super(props);
     this.handleBookPost = this.handleBookPost.bind(this);
+
+    this.state = {
+      redirect: false
+    }
   }
 
   handleBookPost(book){
     const request = new Request();
-    request.post('/api/books', book).then(() => {
-       let x = 4
-    })
+    request.post('/api/books', book)
+    .then(() => this.props.getAllData())
+    .then(() => this.setState({ redirect: true}));
+
   }
 
   render(){
+
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to ='/books'/>;
+    }
+
     return(
       <div>
       <BookForm users={this.props.users} handleBookPost={this.handleBookPost}
     user={this.props.user}/>
-    <Redirect
-    to={{
-    pathname: "/books",
-    state: { selectedUser: this.props.user }
-  }}/>
     </div>
   )
-  }
+}
 }
 
 export default AddBookFormContainer;

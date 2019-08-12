@@ -30,7 +30,6 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
   }
 
 
-
   const usersBooksJSX = usersBooks.map((book, index) => {
     //Equals -1 if trades array is empty
     const lastTradeIndex = book.trades.length - 1

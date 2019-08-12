@@ -14,6 +14,7 @@ class MainContainer extends Component {
 
     this.state = {
       books: [],
+      //need to add a book in here on redirect
       users: [],
       trades: [],
       selectedUser: null
@@ -79,7 +80,6 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
   }
 
-
   render(){
     return (
       <div>
@@ -98,7 +98,8 @@ class MainContainer extends Component {
         return <AddBookFormContainer
         books={this.state.books}
         users={this.state.users}
-        user={this.state.selectedUser}/>
+        user={this.state.selectedUser}
+        getAllData={this.getAllData}/>
       }} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
