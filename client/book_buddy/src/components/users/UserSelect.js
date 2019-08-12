@@ -13,6 +13,7 @@ const UserSelect = ({users, selectedUser, handleUserSelect}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleUserSelect(event.target.user.value);
+        window.alert("Hey Book Buddy User, please select from the menu!")
   }
 
   return(

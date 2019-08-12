@@ -16,7 +16,7 @@ const BookForm = (props) => {
       "user": props.user._links.self.href
     }
     props.handleBookPost(book);
-
+    window.alert("Thanks for adding a book, select book for trade by ticking box!")
   }
 
   // <select name="users">

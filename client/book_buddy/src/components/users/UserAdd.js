@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {Redirect} from 'react-router-dom'
 
 
 class UserAdd extends Component{
@@ -7,6 +7,7 @@ class UserAdd extends Component{
     super(props)
     this.state = {
       userName: ""
+      // redirect: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,8 +26,16 @@ class UserAdd extends Component{
     }
     this.props.handleAddUser(user);
     this.setState({userName: ""})
+    window.alert("Welcome to book buddy, please select your username from the drop down!")
   }
   render(){
+
+  // const { redirect } = this.state;
+  //
+  // if (redirect) {
+  //   return <Redirect to ='/books'/>;
+  // }
+
   return(
     <div>
     <form onSubmit={this.handleSubmit} >
