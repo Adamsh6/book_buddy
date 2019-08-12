@@ -107,7 +107,8 @@ class MainContainer extends Component {
       }} />
       <Route exact path='/wishlist' render={() => <WishListContainer
         user={this.state.selectedUser}
-        getAllData={this.getAllData}/>} />
+        getAllData={this.getAllData}
+        users={this.state.users}/>} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}

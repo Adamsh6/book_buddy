@@ -12,10 +12,15 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
     return book.user.name === user.name && (lastTrade === undefined || lastTrade.completed === true)
   })
 
-  //Maps books to options
-  const booksUserHasOptions = booksUserHas.map((book, index) => {
-    return <option key={index} value={index}>{book.title}</option>
-  })
+  const booksThatAreWanted = (user) => {
+    const matchedBooks = booksUserHas.filter((book) => {
+      return user.wishlist.includes(book.title)
+    })
+    console.log(user.wishlist)
+    return matchedBooks.map((book, index) => {
+      return <option key={index} value={index}>{book.title}</option>
+    })
+  }
 
   const findBookByTitle = (title, ownerName) => {
     return books.find((book) => {
@@ -58,25 +63,29 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
 
   //Filters for not completed and not users trade
   const availableTrades = trades.filter((trade) => {
-    return trade.completed === false && user.name !== trade.user1.name
+    return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
   })
 
   //Maps to JSX
-  const availableTradesList = availableTrades.map((trade, index) => (
-    <div key={index}>
-    <p>{trade.user1.name} is looking to trade {trade.book1.title} by {trade.book1.author}</p>
-    <form onSubmit={handleSubmit}>
-    <input type="hidden" name="trade" value={trade.id} />
-    <input type="hidden" name="book1" value={trade.book1.title} />
-    <input type="hidden" name="user1Name" value={trade.user1.name} />
-    <select name="book2">
-    <option disabled value="default">Please select a book to trade</option>
-    {booksUserHasOptions}
-    </select>
-    <button type="submit">Trade</button>
-    </form>
-    </div>
-  ))
+  const availableTradesList = availableTrades.map((trade, index) => {
+    const user1 = findUserByName(trade.user1.name)
+    const booksUserHasOptions = booksThatAreWanted(user1)
+    console.log(booksUserHasOptions)
+    return (
+      <div key={index}>
+      <p>{trade.user1.name} is looking to trade {trade.book1.title} by {trade.book1.author}</p>
+      <form onSubmit={handleSubmit}>
+      <input type="hidden" name="trade" value={trade.id} />
+      <input type="hidden" name="book1" value={trade.book1.title} />
+      <input type="hidden" name="user1Name" value={trade.user1.name} />
+      <select name="book2">
+      <option disabled value="default">Please select a book to trade</option>
+      {booksUserHasOptions}
+      </select>
+      <button type="submit">Trade</button>
+      </form>
+      </div>
+    )})
 
 
 
