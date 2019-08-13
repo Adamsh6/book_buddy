@@ -49,32 +49,19 @@
 }
 
 .book-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: inline-flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%
 
 }
 
 .book-style {
-  display: flex;
-  width: 100px;
-  height: 100px;
-  margin: auto;
-  border-color: 1 px solid black;
-  color: blue;
-  list-style-type: none;
+  width: 40%;
 }
 
-.book-elements-style {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  border-color: 1 px solid black;
-  color: blue;
-
-
-
+.book-element-style {
+  width:40%;
 }
 
 
