@@ -109,15 +109,36 @@
 
 }
 
-input[type=submit] {
-  width: 30%;
-  background-color: #332100;
+.user-forms-wrapper {
+  border-radius: 10px;
+  background-color: #ffeccc;
+  padding: 20px;
+  margin: 20px;
+}
+
+input[type=text], select {
+  width: 80%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 80%;
+  background-color: #4d3200;
   color: white;
   padding: 10px 15px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+button[type=submit]:hover {
+  background-color: #332100;
 }
 
 

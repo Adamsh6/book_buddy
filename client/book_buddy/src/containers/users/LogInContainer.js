@@ -17,7 +17,7 @@ class LogInContainer extends Component {
 
   render(){
     return(
-      <div>
+      <div className="user-forms-wrapper">
       <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}
       handleUserSelect={this.props.handleUserSelect}/>
       <UserAdd handleAddUser={this.handleAddUser}/>
