@@ -1,24 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 
-const UserSelect = ({users, selectedUser, handleUserSelect}) => {
-    let defaultUser = "default"
-    if(selectedUser != null) {
-      defaultUser = users.indexOf(selectedUser)
+class UserSelect extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      redirect: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
-  const options = users.map((user, index) => (
+  handleSubmit(event){
+    event.preventDefault();
+    this.props.handleUserSelect(event.target.user.value);
+    this.setState({redirect: true})
+  }
+render(){
+  const options = this.props.users.map((user, index) => (
     <option key={index} value={index}>{user.name}</option>
   ))
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    handleUserSelect(event.target.user.value);
+  const { redirect } = this.state;
+
+  if (redirect) {
+    return <Redirect to ='/books'/>;
   }
+
 
   return(
     <div>
-    <form onSubmit={handleSubmit}>
-    <select name="user" defaultValue={defaultUser}>
+    <form onSubmit={this.handleSubmit}>
+    <select name="user" defaultValue="default">
     <option disabled value="default">Please select your username</option>
     {options}
     </select>
@@ -26,6 +38,7 @@ const UserSelect = ({users, selectedUser, handleUserSelect}) => {
     </form>
     </div>
   )
+}
 }
 
 export default UserSelect;
