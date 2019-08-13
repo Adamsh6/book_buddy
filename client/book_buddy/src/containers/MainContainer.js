@@ -83,7 +83,9 @@ class MainContainer extends Component {
   render(){
     return (
       <div>
-      <h1>BOOK BUDDY</h1>
+        <div id="books-background">
+          <h1 >BOOK BUDDY</h1>
+        </div>
       <Router>
       <NavBar/>
       <Switch>

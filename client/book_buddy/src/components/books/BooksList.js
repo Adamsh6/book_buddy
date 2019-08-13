@@ -38,19 +38,19 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     if(lastTradeIndex === -1 || book.trades[lastTradeIndex].completed === true)
     {
       return(
-        <div className="book-style">
-        <li className="book_element-style"key={index}>
-        <p>{book.title} by {book.author}</p>
-        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
+        <div className="book-container">
+        <li className="book-style" key={index}>
+          <p>{book.title} by {book.author}</p>
+          <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
         </li>
         </div>
       )
     } else {
       return (
-        <div className="book-style">
-        <li key={index}>
-        <p>{book.title} by {book.author}</p>
-        <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
+        <div className="book-container">
+        <li className="book-style" key={index}>
+          <p>{book.title} by {book.author}</p>
+          <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
         </li>
         </div>
       )
@@ -62,7 +62,7 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     <div >
     <h3>My Books</h3>
     <ul className="book-container">
-    {usersBooksJSX}
+      {usersBooksJSX}
     </ul>
 
     </div>
