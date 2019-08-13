@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import WishListList from './WishListList'
+import Request from '../../helpers/request'
 
 class WishList extends Component {
   constructor(props){
@@ -16,6 +17,7 @@ class WishList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.getSelectedUserLocation = this.getSelectedUserLocation.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
   }
 
   handleChange(event){
@@ -28,7 +30,12 @@ class WishList extends Component {
     ))
   }
 
-
+  handleDeleteItem(id, payload) {
+    const request = new Request();
+    const url = '/api/users/' + id
+    request.patch(url, payload)
+    .then(() => this.props.getAllData())
+  }
 
 
   handleSubmit(event){
@@ -43,13 +50,17 @@ class WishList extends Component {
 
   }
   render(){
+
   return(
     <div>
     <form onSubmit={this.handleSubmit}>
     <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
     <button type="submit">Add</button>
     </form>
-    <WishListList users={this.props.users} user={this.props.user}/>
+    <WishListList
+    users={this.props.users}
+    user={this.props.user}
+    handleDeleteItem={this.handleDeleteItem}/>
     </div>
   )
 }
