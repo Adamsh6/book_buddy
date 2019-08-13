@@ -84,6 +84,7 @@
   flex-wrap: wrap;
   justify-content: space-around; */
   color: black;
+  background-color: #ffeccc;
   list-style-type: none;
   width: 200px;
   height: 200px;
@@ -117,7 +118,7 @@
 }
 
 input[type=text], select {
-  width: 80%;
+  width: 60%;
   padding: 10px 15px;
   margin: 8px 0;
   display: inline-block;
@@ -127,7 +128,7 @@ input[type=text], select {
 }
 
 button[type=submit] {
-  width: 80%;
+  width: 60%;
   background-color: #4d3200;
   color: white;
   padding: 10px 15px;

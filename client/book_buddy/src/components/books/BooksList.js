@@ -40,7 +40,9 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
       return(
         <div className="book-container">
         <li className="book-style" key={index}>
-          <p>{book.title} by {book.author}</p>
+          <h3>{book.title} </h3>
+          <h5>by: {book.author}</h5>
+          <p><label for="forTrade">Select to trade</label></p>
           <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
         </li>
         </div>
@@ -49,7 +51,9 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
       return (
         <div className="book-container">
         <li className="book-style" key={index}>
-          <p>{book.title} by {book.author}</p>
+          <h3>{book.title} </h3>
+          <h5>by: {book.author}</h5>
+          <p><label for="forTrade">Selected for trade</label></p>
           <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
         </li>
         </div>
