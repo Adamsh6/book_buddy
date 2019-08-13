@@ -5,6 +5,7 @@ import BooksList from '../components/books/BooksList';
 import AvailableTradesList from '../components/trades/AvailableTradesList';
 import PastTradesList from '../components/trades/PastTradesList';
 import AddBookFormContainer from './books/AddBookFormContainer';
+import WishListContainer from './wishlist/WishListContainer';
 import NavBar from '../NavBar';
 import Request from '../helpers/request';
 
@@ -14,22 +15,25 @@ class MainContainer extends Component {
 
     this.state = {
       books: [],
+      //need to add a book in here on redirect
       users: [],
       trades: [],
-      selectedUser: null
+      selectedUser: null,
+      changed: false
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
     this.getAllData = this.getAllData.bind(this)
     this.handleAddTrade = this.handleAddTrade.bind(this)
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
+    // this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 
   getAllData(){
     const request = new Request()
-    const promise1 = request.get('/api/books')
-    const promise2 = request.get('/api/users')
-    const promise3 = request.get('/api/trades')
+    const promise1 = request.get('/api/books?page=0&size=99999')
+    const promise2 = request.get('/api/users?page=0&size=99999')
+    const promise3 = request.get('/api/trades?page=0&size=99999')
     const promises = [promise1, promise2, promise3]
 
     Promise.all(promises).then((data) => {
@@ -79,7 +83,6 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
   }
 
-
   render(){
     return (
       <div>
@@ -98,8 +101,13 @@ class MainContainer extends Component {
         return <AddBookFormContainer
         books={this.state.books}
         users={this.state.users}
-        user={this.state.selectedUser}/>
+        user={this.state.selectedUser}
+        getAllData={this.getAllData}/>
       }} />
+      <Route exact path='/wishlist' render={() => <WishListContainer
+        user={this.state.selectedUser}
+        getAllData={this.getAllData}
+        users={this.state.users}/>} />
       <Route exact path='/trades'
       render={() => <AvailableTradesList
         trades={this.state.trades}
@@ -107,9 +115,6 @@ class MainContainer extends Component {
         books={this.state.books}
         handleTrade={this.handleAcceptTrade}
         users={this.state.users}/>} />
-      <Route exact path='/trades_history'
-      render={() => <PastTradesList
-        user={this.state.selectedUser}/>} />
       <Route exact path='/'
       render={() => <LogInContainer
         users={this.state.users}
