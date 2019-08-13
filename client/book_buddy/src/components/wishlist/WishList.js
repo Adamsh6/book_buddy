@@ -17,7 +17,6 @@ class WishList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.getSelectedUserLocation = this.getSelectedUserLocation.bind(this)
-    this.handleDeleteItem = this.handleDeleteItem.bind(this)
   }
 
   handleChange(event){

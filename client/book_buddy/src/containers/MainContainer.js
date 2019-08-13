@@ -28,6 +28,7 @@ class MainContainer extends Component {
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
     this.setFiltered = this.setFiltered.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
     // this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 

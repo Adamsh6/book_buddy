@@ -69,7 +69,7 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
     if(filtered === false){
       return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
     } else {
-      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && user.wishlist.includes(trade.book1.title)
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && findUserByName(user.name).wishlist.includes(trade.book1.title)
     }
 
   })
