@@ -40,7 +40,11 @@ class WishList extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-
+    if(this.props.users[this.getSelectedUserLocation()].wishlist.includes(event.target.title.value)){
+      window.alert("You already have this on your wishlist")
+      this.setState({title: ""})
+      return
+    }
     const newWishlist = [...this.props.users[this.getSelectedUserLocation()].wishlist, event.target.title.value]
     const payload = {
       wishlist: newWishlist
