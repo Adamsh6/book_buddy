@@ -16,6 +16,14 @@ class WishListContainer extends Component {
 
   }
 
+  handleDeleteWishListItem(id){
+    const request = new Request();
+    const url = '/api/wishlist/' + id
+    request.delete(url).then(() => this.getAllData())
+
+    // window.alert("You took the book off the wish list!")
+  }
+
   render(){
     return(
       <WishList user={this.props.user}

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+// import WishListItem from './WishLisItem';
 
 const WishListList = (props) => {
 
@@ -9,8 +10,13 @@ const WishListList = (props) => {
   }
 
   const books = props.users[getSelectedUserLocation()].wishlist.map((title, index) => (
-    <li key={index}>{title}</li>
+    <div>
+    <li key={index} title={title}>{title}</li>
+    <button>Delete</button>
+    </div>
   ))
+
+  //change to wishlistitem
 
   return(
     <ul>

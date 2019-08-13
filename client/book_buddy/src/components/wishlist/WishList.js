@@ -28,7 +28,25 @@ class WishList extends Component {
     ))
   }
 
-
+  // const handleChange = (event) => {
+  //   event.preventDefault();
+  //   const book = usersBooks[event.target.value];
+  //   const lastTrade = book.trades[book.trades.length - 1]
+  //   //Add trade if book isn't being traded, delete trade if it is
+  //   if(lastTrade === undefined || lastTrade.completed === true){
+  //     const newTrade = {
+  //       user1: user._links.self.href,
+  //       book1: book._links.self.href
+  //     }
+  //     console.log(newTrade);
+  //     handleAddTrade(newTrade)
+  //   } else {
+  //     const trade = trades.find((trade) => (
+  //       trade.completed === false && trade.book1.title === book.title
+  //     ))
+  //     handleDeleteTrade(trade.id)
+  //   }
+  // }
 
 
   handleSubmit(event){
