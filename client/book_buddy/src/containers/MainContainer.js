@@ -91,6 +91,8 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
     .then(() => request.patch(book2Url, payload.book2))
     .then(() => this.getAllData())
+    .then(() => this.handleDeleteItem(payload.user1Id, payload.wishlist1))
+    .then(() => this.handleDeleteItem(payload.user2Id, payload.wishlist2))
   }
 
   setFiltered(){
