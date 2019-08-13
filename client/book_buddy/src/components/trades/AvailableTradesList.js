@@ -95,8 +95,10 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
       </div>
     )})
 
-
-
+    if(availableTrades.length === 0){
+      return(<h2>No Trades Available</h2>)
+    }
+  
   return(
     <div>
     <select name="filter" defaultValue={filtered} onChange={handleChange}>

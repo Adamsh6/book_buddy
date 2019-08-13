@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => {
   if(!user) {
@@ -51,6 +52,12 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     }
   }
 )
+
+if(user.books.length === 0){
+  return(<div>
+    <h2>You have no books saved. Click <Link to="/books/new">here</Link> to add a new book.</h2>
+  </div>)
+}
 
   return(
     <div>
