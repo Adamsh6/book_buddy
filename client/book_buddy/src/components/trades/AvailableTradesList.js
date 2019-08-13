@@ -69,7 +69,7 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
     if(filtered === false){
       return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
     } else {
-      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && user.wishlist.includes(trade.book1.title)
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && findUserByName(user.name).wishlist.includes(trade.book1.title)
     }
 
   })
@@ -96,9 +96,17 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
     )})
 
     if(availableTrades.length === 0){
-      return(<h2>No Trades Available</h2>)
+      return(
+        <div>
+        <select name="filter" defaultValue={filtered} onChange={handleChange}>
+        <option value={false}>All Trades</option>
+        <option value={true}>Only Books I Want</option>
+        </select>
+        <h2>No Trades Available</h2>
+        </div>
+      )
     }
-  
+
   return(
     <div>
     <select name="filter" defaultValue={filtered} onChange={handleChange}>

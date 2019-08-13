@@ -11,6 +11,8 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     return book.user.name === user.name
   })
 
+
+
   const handleChange = (event) => {
     event.preventDefault();
     const book = usersBooks[event.target.value];
@@ -62,7 +64,8 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
   }
 )
 
-if(user.books.length === 0){
+
+if(usersBooks.length === 0){
   return(<div>
     <h2>You have no books saved. Click <Link to="/books/new">here</Link> to add a new book.</h2>
   </div>)

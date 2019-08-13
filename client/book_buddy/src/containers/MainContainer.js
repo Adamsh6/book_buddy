@@ -28,6 +28,7 @@ class MainContainer extends Component {
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
     this.setFiltered = this.setFiltered.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
     // this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 
@@ -69,6 +70,13 @@ class MainContainer extends Component {
     request.post('/api/trades', payload).then(() => this.getAllData())
 
     // window.alert("You added the book to trade!")
+  }
+
+  handleDeleteItem(id, payload) {
+    const request = new Request();
+    const url = '/api/users/' + id
+    request.patch(url, payload)
+    .then(() => this.getAllData())
   }
 
   //TODO: Steps to handle accept trade
@@ -113,6 +121,7 @@ class MainContainer extends Component {
         getAllData={this.getAllData}/>
       }} />
       <Route exact path='/wishlist' render={() => <WishListContainer
+        handleDeleteItem={this.handleDeleteItem}
         user={this.state.selectedUser}
         getAllData={this.getAllData}
         users={this.state.users}/>} />

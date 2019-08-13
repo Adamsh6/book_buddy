@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import WishListList from './WishListList'
+import Request from '../../helpers/request'
 
 class WishList extends Component {
   constructor(props){
@@ -28,12 +29,13 @@ class WishList extends Component {
     ))
   }
 
-
-
-
   handleSubmit(event){
     event.preventDefault();
-
+    if(this.props.users[this.getSelectedUserLocation()].wishlist.includes(event.target.title.value)){
+      window.alert("You already have this on your wishlist")
+      this.setState({title: ""})
+      return
+    }
     const newWishlist = [...this.props.users[this.getSelectedUserLocation()].wishlist, event.target.title.value]
     const payload = {
       wishlist: newWishlist
@@ -43,13 +45,17 @@ class WishList extends Component {
 
   }
   render(){
+
   return(
     <div>
     <form onSubmit={this.handleSubmit}>
     <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
     <button type="submit">Add</button>
     </form>
-    <WishListList users={this.props.users} user={this.props.user}/>
+    <WishListList
+    users={this.props.users}
+    user={this.props.user}
+    handleDeleteItem={this.props.handleDeleteItem}/>
     </div>
   )
 }
