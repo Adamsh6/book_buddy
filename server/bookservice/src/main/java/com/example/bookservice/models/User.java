@@ -18,7 +18,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+
+    @Column(name = "name", unique = true)
     private String name;
 
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)

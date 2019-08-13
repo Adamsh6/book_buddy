@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => {
@@ -37,19 +38,33 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
     if(lastTradeIndex === -1 || book.trades[lastTradeIndex].completed === true)
     {
       return(
+<<<<<<< HEAD
         <div className="book-style">
         <li className="book-element-style" key={index}>
         <p >{book.title} by {book.author}</p>
         <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
+=======
+        <div className="book-container">
+        <li className="book-style" key={index}>
+          <p>{book.title} by {book.author}</p>
+          <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={false}/>
+>>>>>>> fda3fe9cbce6f9536cfa062416e47a45470d9ba8
         </li>
         </div>
       )
     } else {
       return (
+<<<<<<< HEAD
         <div className="book-style">
         <li className="book-element-style" key={index}>
         <p>{book.title} by {book.author}</p>
         <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
+=======
+        <div className="book-container">
+        <li className="book-style" key={index}>
+          <p>{book.title} by {book.author}</p>
+          <input type="checkbox" id="forTrade" name="forTrade" onChange={handleChange} value={index} checked={true}/>
+>>>>>>> fda3fe9cbce6f9536cfa062416e47a45470d9ba8
         </li>
         </div>
       )
@@ -57,11 +72,17 @@ const BooksList = ({user, books, trades, handleDeleteTrade, handleAddTrade}) => 
   }
 )
 
+if(user.books.length === 0){
+  return(<div>
+    <h2>You have no books saved. Click <Link to="/books/new">here</Link> to add a new book.</h2>
+  </div>)
+}
+
   return(
     <div >
     <h3>My Books</h3>
     <ul className="book-container">
-    {usersBooksJSX}
+      {usersBooksJSX}
     </ul>
 
     </div>

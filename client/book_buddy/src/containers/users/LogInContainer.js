@@ -10,14 +10,22 @@ class LogInContainer extends Component {
   }
 
 
-  handleAddUser(user){
+  handleAddUser(newUser){
     const request = new Request();
-    request.post('/api/users', user).then(() => this.props.getAllData())
+    if(this.props.users.some((user) => (
+      user.name === newUser.name
+    ))){
+      window.alert("Duplicate user name, please enter something different")
+    } else {
+    request.post('/api/users', newUser)
+    .then(() => this.props.getAllData())
+  }
+
   }
 
   render(){
     return(
-      <div>
+      <div className="user-forms-wrapper">
       <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}
       handleUserSelect={this.props.handleUserSelect}/>
       <UserAdd handleAddUser={this.handleAddUser}/>
