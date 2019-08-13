@@ -16,6 +16,7 @@ const BookForm = (props) => {
       "user": props.user._links.self.href
     }
     props.handleBookPost(book);
+
   }
 
   // <select name="users">

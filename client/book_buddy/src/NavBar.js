@@ -17,7 +17,7 @@ const NavBar = (props) => {
             <Link to="/trades" className="nav-item">Find Trades</Link>
           </li>
           <li>
-            <Link to="/trades_history" className="nav-item">Trade History</Link>
+            <Link to="/wishlist" className="nav-item">Wish List</Link>
           </li>
         </div>
         <div className="nav-links-login">

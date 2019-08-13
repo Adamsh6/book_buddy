@@ -1,21 +1,9 @@
 import React from 'react';
 
-const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
+const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered, setFiltered}) => {
   if(!user) {
     window.location = '/'
   }
-  //TODO filter for not completed and not users trades. Needs option to select book to trade, and then submit to trade books.
-
-  //Returns all books the user owns
-  const booksUserHas = books.filter((book, index) => {
-    const lastTrade = book.trades[book.trades.length - 1]
-    return book.user.name === user.name && (lastTrade === undefined || lastTrade.completed === true)
-  })
-
-  //Maps books to options
-  const booksUserHasOptions = booksUserHas.map((book, index) => {
-    return <option key={index} value={index}>{book.title}</option>
-  })
 
   const findBookByTitle = (title, ownerName) => {
     return books.find((book) => {
@@ -29,7 +17,13 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
     })
   }
 
-  //TODO: instead of preventing user from trading book if up for trade, delete last trade if completed is false
+  //Returns all books the user owns
+  const booksUserHas = books.filter((book, index) => {
+    const lastTrade = book.trades[book.trades.length - 1]
+    return book.user.name === user.name
+  })
+
+  //Handles the submission of a trade
   const handleSubmit = (event) => {
     event.preventDefault();
     const bookToTrade = booksUserHas[event.target.book2.value]
@@ -52,36 +46,65 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
         user: user1._links.self.href
       }
     }
-    console.log(payload)
     handleTrade(payload)
   }
 
+  const handleChange = (event) => {
+    setFiltered()
+  }
+
+  //Returns all books that are wanted by a user
+  const booksThatAreWanted = (user) => {
+    const matchedBooks = booksUserHas.filter((book) => {
+      return user.wishlist.includes(book.title)
+    })
+    return matchedBooks.map((book, index) => {
+      return <option key={index} value={index}>{book.title}</option>
+    })
+  }
+
+
   //Filters for not completed and not users trade
   const availableTrades = trades.filter((trade) => {
-    return trade.completed === false && user.name !== trade.user1.name
+    if(filtered === false){
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
+    } else {
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && user.wishlist.includes(trade.book1.title)
+    }
+
   })
 
   //Maps to JSX
-  const availableTradesList = availableTrades.map((trade, index) => (
-    <div key={index}>
-    <p>{trade.user1.name} is looking to trade {trade.book1.title} by {trade.book1.author}</p>
-    <form onSubmit={handleSubmit}>
-    <input type="hidden" name="trade" value={trade.id} />
-    <input type="hidden" name="book1" value={trade.book1.title} />
-    <input type="hidden" name="user1Name" value={trade.user1.name} />
-    <select name="book2">
-    <option disabled value="default">Please select a book to trade</option>
-    {booksUserHasOptions}
-    </select>
-    <button type="submit">Trade</button>
-    </form>
-    </div>
-  ))
+  const availableTradesList = availableTrades.map((trade, index) => {
+    const user1 = findUserByName(trade.user1.name)
+    const booksUserHasOptions = booksThatAreWanted(user1)
+    console.log(booksUserHasOptions)
+    return (
+      <div key={index}>
+      <p>{trade.user1.name} is looking to trade {trade.book1.title} by {trade.book1.author}</p>
+      <form onSubmit={handleSubmit}>
+      <input type="hidden" name="trade" value={trade.id} />
+      <input type="hidden" name="book1" value={trade.book1.title} />
+      <input type="hidden" name="user1Name" value={trade.user1.name} />
+      <select name="book2">
+      <option disabled value="default">Please select a book to trade</option>
+      {booksUserHasOptions}
+      </select>
+      <button type="submit">Trade</button>
+      </form>
+      </div>
+    )})
 
-
-
+    if(availableTrades.length === 0){
+      return(<h2>No Trades Available</h2>)
+    }
+  
   return(
     <div>
+    <select name="filter" defaultValue={filtered} onChange={handleChange}>
+    <option value={false}>All Trades</option>
+    <option value={true}>Only Books I Want</option>
+    </select>
     {availableTradesList}
     </div>
   )
