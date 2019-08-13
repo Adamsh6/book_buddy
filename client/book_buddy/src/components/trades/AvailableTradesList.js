@@ -1,25 +1,8 @@
 import React from 'react';
 
-const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
+const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered, setFiltered}) => {
   if(!user) {
     window.location = '/'
-  }
-  //TODO filter for not completed and not users trades. Needs option to select book to trade, and then submit to trade books.
-
-  //Returns all books the user owns
-  const booksUserHas = books.filter((book, index) => {
-    const lastTrade = book.trades[book.trades.length - 1]
-    return book.user.name === user.name 
-  })
-
-  const booksThatAreWanted = (user) => {
-    const matchedBooks = booksUserHas.filter((book) => {
-      return user.wishlist.includes(book.title)
-    })
-    console.log(user.wishlist)
-    return matchedBooks.map((book, index) => {
-      return <option key={index} value={index}>{book.title}</option>
-    })
   }
 
   const findBookByTitle = (title, ownerName) => {
@@ -34,7 +17,13 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
     })
   }
 
-  //TODO: instead of preventing user from trading book if up for trade, delete last trade if completed is false
+  //Returns all books the user owns
+  const booksUserHas = books.filter((book, index) => {
+    const lastTrade = book.trades[book.trades.length - 1]
+    return book.user.name === user.name
+  })
+
+  //Handles the submission of a trade
   const handleSubmit = (event) => {
     event.preventDefault();
     const bookToTrade = booksUserHas[event.target.book2.value]
@@ -57,13 +46,32 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
         user: user1._links.self.href
       }
     }
-    console.log(payload)
     handleTrade(payload)
   }
 
+  const handleChange = (event) => {
+    setFiltered()
+  }
+
+  //Returns all books that are wanted by a user
+  const booksThatAreWanted = (user) => {
+    const matchedBooks = booksUserHas.filter((book) => {
+      return user.wishlist.includes(book.title)
+    })
+    return matchedBooks.map((book, index) => {
+      return <option key={index} value={index}>{book.title}</option>
+    })
+  }
+
+
   //Filters for not completed and not users trade
   const availableTrades = trades.filter((trade) => {
-    return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
+    if(filtered === false){
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0
+    } else {
+      return trade.completed === false && user.name !== trade.user1.name && booksThatAreWanted(findUserByName(trade.user1.name)).length > 0 && user.wishlist.includes(trade.book1.title)
+    }
+
   })
 
   //Maps to JSX
@@ -91,6 +99,10 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users}) => {
 
   return(
     <div>
+    <select name="filter" defaultValue={filtered} onChange={handleChange}>
+    <option value={false}>All Trades</option>
+    <option value={true}>Only Books I Want</option>
+    </select>
     {availableTradesList}
     </div>
   )

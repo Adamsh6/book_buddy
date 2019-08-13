@@ -19,13 +19,15 @@ class MainContainer extends Component {
       users: [],
       trades: [],
       selectedUser: null,
-      changed: false
+      changed: false,
+      filtered: false
     }
     this.handleUserSelect = this.handleUserSelect.bind(this)
     this.getAllData = this.getAllData.bind(this)
     this.handleAddTrade = this.handleAddTrade.bind(this)
     this.handleAcceptTrade = this.handleAcceptTrade.bind(this)
     this.handleDeleteTrade = this.handleDeleteTrade.bind(this)
+    this.setFiltered = this.setFiltered.bind(this)
     // this.handleAddToWishList = this.handleAddToWishList.bind(this)
   }
 
@@ -83,6 +85,10 @@ class MainContainer extends Component {
     .then(() => this.getAllData())
   }
 
+  setFiltered(){
+    this.setState({filtered: !this.state.filtered})
+  }
+
   render(){
     return (
       <div>
@@ -114,7 +120,9 @@ class MainContainer extends Component {
         user={this.state.selectedUser}
         books={this.state.books}
         handleTrade={this.handleAcceptTrade}
-        users={this.state.users}/>} />
+        users={this.state.users}
+        filtered={this.state.filtered}
+        setFiltered={this.setFiltered}/>} />
       <Route exact path='/'
       render={() => <LogInContainer
         users={this.state.users}
