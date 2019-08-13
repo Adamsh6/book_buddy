@@ -30,14 +30,6 @@ class WishList extends Component {
     ))
   }
 
-  handleDeleteItem(id, payload) {
-    const request = new Request();
-    const url = '/api/users/' + id
-    request.patch(url, payload)
-    .then(() => this.props.getAllData())
-  }
-
-
   handleSubmit(event){
     event.preventDefault();
     if(this.props.users[this.getSelectedUserLocation()].wishlist.includes(event.target.title.value)){
@@ -64,7 +56,7 @@ class WishList extends Component {
     <WishListList
     users={this.props.users}
     user={this.props.user}
-    handleDeleteItem={this.handleDeleteItem}/>
+    handleDeleteItem={this.props.handleDeleteItem}/>
     </div>
   )
 }

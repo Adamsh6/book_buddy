@@ -22,6 +22,7 @@ class WishListContainer extends Component {
       users={this.props.users}
       handleAddToWishList={this.handleAddToWishList}
       getAllData={this.props.getAllData}
+      handleDeleteItem={this.props.handleDeleteItem}
       />
     )
   }

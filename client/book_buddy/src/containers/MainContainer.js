@@ -71,6 +71,13 @@ class MainContainer extends Component {
     // window.alert("You added the book to trade!")
   }
 
+  handleDeleteItem(id, payload) {
+    const request = new Request();
+    const url = '/api/users/' + id
+    request.patch(url, payload)
+    .then(() => this.getAllData())
+  }
+
   //TODO: Steps to handle accept trade
   handleAcceptTrade(payload){
     const request = new Request();
@@ -113,6 +120,7 @@ class MainContainer extends Component {
         getAllData={this.getAllData}/>
       }} />
       <Route exact path='/wishlist' render={() => <WishListContainer
+        handleDeleteItem={this.handleDeleteItem}
         user={this.state.selectedUser}
         getAllData={this.getAllData}
         users={this.state.users}/>} />
