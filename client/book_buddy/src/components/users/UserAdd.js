@@ -24,6 +24,7 @@ class UserAdd extends Component{
     this.props.handleAddUser(user);
     this.setState({userName: ""})
   }
+
   render(){
   return(
     <div>
