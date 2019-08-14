@@ -103,7 +103,7 @@ class MainContainer extends Component {
     return (
       <div>
         <div id="books-background">
-          <h1 >BOOK BUDDY</h1>
+          <h1 >BOOK BUDDIES</h1>
         </div>
       <Router>
       <NavBar/>
