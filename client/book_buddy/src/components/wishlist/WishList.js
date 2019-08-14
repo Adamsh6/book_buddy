@@ -52,10 +52,12 @@ class WishList extends Component {
     <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
     <button type="submit">Add</button>
     </form>
-    <WishListList
-    users={this.props.users}
-    user={this.props.user}
-    handleDeleteItem={this.props.handleDeleteItem}/>
+    <div class="wish-list-wrapper">
+      <WishListList
+      users={this.props.users}
+      user={this.props.user}
+      handleDeleteItem={this.props.handleDeleteItem}/>
+    </div>
     </div>
   )
 }

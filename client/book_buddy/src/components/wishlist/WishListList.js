@@ -22,14 +22,16 @@ const WishListList = (props) => {
   }
 
   const books = wishlist.map((title, index) => (
-    <div>
-    <li key={index}>{title}</li>
-    <button value={title} onClick={handleDelete}>Delete</button>
+    <div className="wish-container">
+      <li className="wish-book-style" key={index}>
+        <h3>{title}</h3>
+        <button value={title} onClick={handleDelete}>Delete</button>
+      </li>
     </div>
   ))
 
   return(
-    <ul>
+    <ul className="wish-container">
     {books}
     </ul>
   )

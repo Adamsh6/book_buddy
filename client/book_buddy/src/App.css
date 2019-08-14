@@ -90,7 +90,36 @@
   height: 200px;
   margin: auto;
   border: 3px solid #332100;
-  border-radius: 15px;}
+  border-radius: 15px;
+}
+
+  .wish-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    display: inline-block;
+    margin: auto;
+    /* justify-content: flex-start; */
+    /* color: blue; */
+    /* list-style-type: none; */
+
+  }
+
+  .wish-book-style {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around; */
+    color: black;
+    background-color: #ffeccc;
+    list-style-type: none;
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    padding: 20px;
+    border: 3px solid #332100;
+    border-radius: 15px;}
 
 
 
@@ -115,6 +144,15 @@
   background-color: #ffeccc;
   padding: 20px;
   margin: 20px;
+}
+
+.wish-list-wrapper {
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  width: 60%;
+
 }
 
 input[type=text], select {
