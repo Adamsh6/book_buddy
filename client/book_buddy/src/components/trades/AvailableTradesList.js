@@ -105,12 +105,13 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
     const booksUserHasOptions = booksThatAreWanted(user1)
     console.log(booksUserHasOptions)
     return (
-      <div key={index}>
-      <p>{trade.user1.name} is looking to trade {trade.book1.title} by {trade.book1.author}</p>
+      <div key={index} className="trade-style">
+      <p>{trade.user1.name} is looking to trade <b>{trade.book1.title}</b> by {trade.book1.author}</p>
       <form onSubmit={handleSubmit}>
       <input type="hidden" name="trade" value={trade.id} />
       <input type="hidden" name="book1" value={trade.book1.title} />
       <input type="hidden" name="user1Name" value={trade.user1.name} />
+      <label for="book2">Select what you want to trade:</label>
       <select name="book2">
       <option disabled value="default">Please select a book to trade</option>
       {booksUserHasOptions}
@@ -134,11 +135,15 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
 
   return(
     <div>
-    <select name="filter" defaultValue={filtered} onChange={handleChange}>
+    <h2>Available Trades</h2>
+    <label for="page-select">Filter trades: </label>
+    <select name="filter" defaultValue={filtered} onChange={handleChange} className="page-select">
     <option value={false}>All Trades</option>
     <option value={true}>Only Books I Want</option>
     </select>
+    <div className="trade-container">
     {availableTradesList}
+    </div>
     </div>
   )
 }

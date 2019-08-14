@@ -73,7 +73,7 @@ if(usersBooks.length === 0){
 
   return(
     <div >
-    <h3>My Books</h3>
+    <h2>My Books</h2>
     <ul className="book-container">
       {usersBooksJSX}
     </ul>

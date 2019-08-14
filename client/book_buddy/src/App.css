@@ -1,6 +1,6 @@
 .body {
   margin-top: 0;
-  }
+}
 
 .App {
   text-align: center;
@@ -93,33 +93,59 @@
   border-radius: 15px;
 }
 
-  .wish-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:space-between;
-    display: inline-block;
-    margin: auto;
-    /* justify-content: flex-start; */
-    /* color: blue; */
-    /* list-style-type: none; */
+.wish-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  display: inline-block;
+  margin: auto;
+  /* justify-content: flex-start; */
+  /* color: blue; */
+  /* list-style-type: none; */
 
-  }
+}
 
-  .wish-book-style {
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around; */
-    color: black;
-    background-color: #ffeccc;
-    list-style-type: none;
-    width: 200px;
-    height: 100px;
-    margin: 20px;
-    padding: 20px;
-    border: 3px solid #332100;
-    border-radius: 15px;}
+.wish-book-style {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+  color: black;
+  background-color: #ffeccc;
+  list-style-type: none;
+  width: 200px;
+  height: 100px;
+  margin: 20px;
+  padding: 20px;
+  border: 3px solid #332100;
+  border-radius: 15px;
+}
+
+.trade-style {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+  color: black;
+  background-color: #ffeccc;
+  list-style-type: none;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border: 3px solid #332100;
+  border-radius: 15px;
+}
+
+.trade-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* color: blue; */
+  /* list-style-type: none; */
+
+}
 
 
 
@@ -182,11 +208,11 @@ button[type=submit]:hover {
 
 
 /* .book-element-style {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  border-color: 1 px solid black;
-  color: blue;
+display: flex;
+flex-direction: row;
+margin: auto;
+border-color: 1 px solid black;
+color: blue;
 
 
 
