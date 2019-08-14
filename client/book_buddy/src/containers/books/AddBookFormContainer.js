@@ -36,6 +36,7 @@ class AddBookFormContainer extends Component {
 
     return(
       <div>
+      <h2>Add Book</h2>
       <BookForm users={this.props.users} handleBookPost={this.handleBookPost}
     user={this.props.user}/>
     </div>

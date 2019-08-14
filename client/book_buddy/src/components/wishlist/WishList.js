@@ -48,7 +48,9 @@ class WishList extends Component {
 
   return(
     <div>
-    <form onSubmit={this.handleSubmit}>
+    <h2>Wish List</h2>
+    <form className="wish-list-form" onSubmit={this.handleSubmit}>
+    <h3>Add a title to your Wish List</h3>
     <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
     <button type="submit">Add</button>
     </form>

@@ -25,10 +25,15 @@ class LogInContainer extends Component {
 
   render(){
     return(
+      <div>
+      <h2>Log in or add a new user</h2>
       <div className="user-forms-wrapper">
+      <h3>Log In</h3>
       <UserSelect users={this.props.users} selectedUser={this.props.selectedUser}
       handleUserSelect={this.props.handleUserSelect}/>
+      <h3>Add a new User</h3>
       <UserAdd handleAddUser={this.handleAddUser}/>
+      </div>
       </div>
     )
   }

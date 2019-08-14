@@ -132,6 +132,7 @@
   list-style-type: none;
   width: 200px;
   height: 200px;
+  padding: 5px;
   margin: auto;
   border: 3px solid #332100;
   border-radius: 15px;
@@ -147,6 +148,9 @@
 
 }
 
+.page-select {
+  width: 150px;
+}
 
 
 #books-background {
@@ -174,11 +178,19 @@
 
 .wish-list-wrapper {
   border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
+  padding: 5px;
+  margin: 10px;
+  margin-top: 20px;
   border: 1px solid #ccc;
-  width: 60%;
+  width: 64%;
+  float: right;
+}
 
+.wish-list-form {
+  width: 32%;
+  margin-top: 20px;
+  padding: 0px;
+  float: left;
 }
 
 input[type=text], select {
