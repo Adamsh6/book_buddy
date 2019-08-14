@@ -26,7 +26,6 @@ render(){
     return <Redirect to ='/books'/>;
   }
 
-
   return(
     <div>
     <form onSubmit={this.handleSubmit}>

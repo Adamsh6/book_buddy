@@ -23,6 +23,7 @@ class UserAdd extends Component{
     }
     this.props.handleAddUser(user);
     this.setState({userName: ""})
+    window.alert("New user " + userName + " added!")
   }
 
   render(){

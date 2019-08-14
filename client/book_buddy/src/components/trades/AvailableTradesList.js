@@ -26,10 +26,25 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
   //Handles the submission of a trade
   const handleSubmit = (event) => {
     event.preventDefault();
-    const bookToTrade = booksUserHas[event.target.book2.value]
+
     const bookToGet = findBookByTitle(event.target.book1.value, event.target.user1Name.value)
     const user1 = findUserByName(event.target.user1Name.value)
+    const matchedBooks = booksUserHas.filter((book) => {
+      return user1.wishlist.includes(book.title)
+    })
+    const bookToTrade = matchedBooks[event.target.book2.value]
     const user2 = user
+    const wishlist1 = [...user1.wishlist]
+    const wishlist2 = [...user2.wishlist]
+    console.log(bookToTrade.title)
+    console.log(bookToGet.title)
+    if(wishlist1.indexOf(bookToTrade.title) > -1){
+      wishlist1.splice(wishlist1.indexOf(bookToTrade.title), 1)
+    }
+    if(wishlist2.indexOf(bookToGet.title) > -1){
+      wishlist2.splice(wishlist2.indexOf(bookToGet.title), 1)
+    }
+
     const payload = {
       tradeId: event.target.trade.value,
       trade: {
@@ -44,8 +59,18 @@ const AvailableTradesList = ({trades, user, books, handleTrade, users, filtered,
       book2Id: bookToTrade.id,
       book2 : {
         user: user1._links.self.href
+      },
+      user1Id: user1.id,
+      wishlist1: {
+        wishlist: wishlist1
+      },
+      user2Id: user2.id,
+      wishlist2: {
+        wishlist: wishlist2
       }
     }
+    console.log(wishlist1)
+    console.log(wishlist2)
     handleTrade(payload)
   }
 
