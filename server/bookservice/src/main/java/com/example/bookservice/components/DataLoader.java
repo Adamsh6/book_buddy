@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Component
@@ -41,10 +42,13 @@ public class DataLoader implements ApplicationRunner {
         } catch (ParseException e) {
         e.printStackTrace();
         }
+        ArrayList<String> wishlist = new ArrayList<>();
+        wishlist.add("Elantris");
         User user1 = new User("William");
+        user1.setWishlist(wishlist);
         userRepository.save(user1);
-
         User user2 = new User("Susan");
+        user2.setWishlist(wishlist);
         userRepository.save(user2);
         User user3 = new User("Colin");
         userRepository.save(user3);
@@ -77,5 +81,11 @@ public class DataLoader implements ApplicationRunner {
         tradeRepository.save(trade1);
         Trade trade2 = new Trade(user2, book4);
         tradeRepository.save(trade2);
+        Trade trade3 = new Trade(user1, book2);
+        tradeRepository.save(trade3);
+        Trade trade4 = new Trade(user1, book3);
+        tradeRepository.save(trade4);
+        Trade trade5 = new Trade(user2, book5);
+        tradeRepository.save(trade5);
         }
 }
